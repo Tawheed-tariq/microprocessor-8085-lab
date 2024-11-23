@@ -6,5 +6,5 @@ jmp start
 start: nop
 SUB A
 ADI 05H       ;add 05H to accumulator 
-ADI 15H       ;add 15H to accumulator 
+ADI 04H       ;add 04H to accumulator 
 hlt                

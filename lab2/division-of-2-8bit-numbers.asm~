@@ -1,0 +1,18 @@
+;Division of 8 bit number
+
+
+MVI C, 00H ; Initialize C register with 00H (to store quotient)
+LXI H, 2050H ; Load HL register pair with memory location 2050H (dividend address)
+MOV A, M ; Move the value at 2050H (dividend) into register A
+INX H ; Increment HL to point to 2051H (divisor address)
+MOV B, M ; Move the value at 2051H (divisor) into register B
+DIV_LOOP: CMP B ; Compare the value in A (dividend) with B (divisor)
+JC END_DIV ; If A < B (carry set), jump to END_DIV (division complete)
+SUB B ; Subtract B from A (A = A - B)
+INR C ; Increment C (quotient)
+JMP DIV_LOOP ; Jump to DIV_LOOP to continue subtracting
+END_DIV: INX H ; Increment HL to point to 2052H (to store quotient)
+MOV M, C ; Store the quotient in memory at 2052H
+INX H ; Increment HL to point to 2053H (to store remainder)
+MOV M, A ; Store the remainder in memory at 2053H
+HLT ; Halt the program

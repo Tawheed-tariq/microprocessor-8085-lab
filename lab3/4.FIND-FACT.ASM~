@@ -1,0 +1,40 @@
+; Program to calculate the factorial of a number stored at 2000H
+; Input: Number (N) at memory address 2000H
+; Output: Factorial of N stored at memory address 2050H
+; Assumptions: 
+; - The factorial result should fit in 8 bits (max input is 5, as 5! = 120).
+; - Factorial for N > 5 will result in overflow and produce incorrect results.
+
+LXI H, 2000H    ; Load starting address 2000H into HL register pair
+MOV B, M        ; Load the number (N) from memory 2000H into register B
+MVI C, 01H      ; Initialize register C with 1 (to store intermediate results)
+MOV A, B        ; Copy the value of N into register A for safety
+DCR B           ; Decrement B (start the loop from N-1)
+
+LOOP: MOV D, B        ; Copy the current value of B into D (multiplier)
+      MOV E, C        ; Copy the current factorial value (C) into E (multiplicand)
+      CALL MULTIPLY   ; Call the MULTIPLY subroutine (C = D * C)
+      MOV C, L        ; Store the result of multiplication (from L) into C
+      MOV B, D        ; Restore the decremented value of B
+      DCR B           ; Decrement B for the next iteration
+      JNZ LOOP        ; Repeat until B reaches 0
+
+STA 2050H        ; Store the final result (factorial) at memory address 2050H
+HLT              ; Halt the program
+
+; Subroutine: MULTIPLY
+; Multiplies two numbers in registers D and E, storing the result in HL
+MULTIPLY: MOV A, D     ; Copy the multiplier (D) into A
+          MVI H, 00    ; Clear the high byte of HL (result)
+          MOV L, E     ; Copy the multiplicand (E) into L
+          CALL Add     ; Add the multiplicand (E) to HL
+          DCR D        ; Decrement the multiplier
+          JNZ MULTIPLY ; Repeat until the multiplier becomes 0
+          RET          ; Return to the main program
+
+; Subroutine: Add
+; Adds the content of H to L and stores the result in L
+Add:      MOV A, L     ; Load L (current result) into A
+          ADD H        ; Add H (high byte) to A
+          MOV L, A     ; Store the result back into L
+          RET          ; Return to the calling program

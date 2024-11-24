@@ -1,0 +1,28 @@
+; Initialize the starting address of the array
+LXI H, 2000H  ; HL points to the start of the array
+
+; Initialize the counter
+MVI C, 05H    ; Number of elements in the array
+
+; Load the first element of the array into the accumulator
+MOV A, M
+INX H
+
+; Initialize the largest number with the first element
+MOV B, A
+
+; Loop through the array
+LOOP: MOV A, M
+CMP B
+JNC NEXT
+MOV B, A
+
+NEXT: INX H
+DCR C
+JNZ LOOP
+
+; Store the largest number at memory location 2050H
+MOV A, B
+STA 2050H
+
+HLT

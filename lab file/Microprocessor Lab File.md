@@ -1,6 +1,6 @@
 <div justify="center">
-<h1 align="center"> Tavaheed Tariq  </h1>
-<h3 align="center"> 2022BITE008</h3>
+<h1 align="center"> Afsheen Sajad  </h1>
+<h3 align="center"> 2022BITE048</h3>
 <h4 align="center">Lab File for Microprocessor 8085</h4>
 </div>
 
@@ -199,222 +199,220 @@ HLT
 
 ![[Pasted image 20241123180023.png]]
 # Program to Subtract a Number from Input Port 01H from the Number at Memory Location 1006H
+| Mnemonics              | Hex-codes      | Address              |
+| ---------------------- | -------------- | -------------------- |
+| LXI H, 1006H           | 21<br>06<br>10 | 3000<br>3001<br>3002 |
+| MOV B, M               | 46             | 3003                 |
+| IN 01H                 | DB<br>01       | 3004<br>3005         |
+| SUB B                  | 90             | 3006                 |
+| LXI H, 2000H           | 21<br>00<br>20 | 3007<br>3008<br>3009 |
+| MOV M, A               | 77             | 3010                 |
+| HLT                    | 76             | 3011                 |
+result
+![[Pasted image 20241124170546.png]]
 
-| Mnemonics       | Hex-codes      | Address              |
-| --------------- | -------------- | -------------------- |
-| LXI H, 1006H    | 21<br>06<br>10 | 3000<br>3001<br>3002 |
-| MOV A, M        | 7E             | 3003                 |
-| IN 01H          | DB<br>01       | 3004<br>3005         |
-| SUB A           | 97             | 3006                 |
-| JNC NoBorrow    | D2<br>0C<br>30 | 3007<br>3008<br>3009 |
-| STC             | 37             | 300A                 |
-| NoBorrow: LXI H, 1008H | 21<br>08<br>10 | 300B<br>300C<br>300D |
-| MOV M, A        | 77             | 300E                 |
-| OUT 06H         | D3<br>06       | 300F<br>3010         |
-| HLT             | 76             | 3011                 |
+inputs
+![[Pasted image 20241124170607.png]]
+
+![[Pasted image 20241124170621.png]]
 
 # Find the largest in an array
-
-| Mnemonics   | Hex-codes      | Address              |
-| ----------- | -------------- | -------------------- |
-| LXI H       | 21<br>00<br>20 | 3000<br>3001<br>3002 |
-| MOV C, M    | 4E             | 3003                 |
-| INX H       | 23             | 3004                 |
-| MOV A, M    | 7E             | 3005                 |
-| DCR C       | 0D             | 3006                 |
-| Loop: INX H | 23             | 3007                 |
-| MOV B, M    | 46             | 3008                 |
-| CMP B       | B8             | 3009                 |
-| JNC Next    | D2<br>11<br>20 | 300A<br>300B<br>300C |
-| MOV A, B    | 78             | 300D                 |
-| Next: DCR C | 0D             | 2011                 |
-| JNZ Loop    | C2<br>07<br>30 | 2012<br>2013<br>2014 |
-| STA 2050H   | 32<br>50<br>20 | 2100<br>2101<br>2102 |
-| HLT         | 76             | 2103                 |
+| Mnemonics    | Hex-codes      | Address              |
+| ------------ | -------------- | -------------------- |
+| LXI H, 2050H | 21<br>50<br>20 | 3000<br>3001<br>3002 |
+| MOV A, M     | 7E             | 3003                 |
+| STA 2060H    | 32<br>60<br>20 | 3004<br>3005<br>3006 |
+| LDA 2040H    | 3A<br>40<br>20 | 3007<br>3008<br>3009 |
+| MOV B, A     | 47             | 3010                 |
+| DCR B        | 05             | 3011                 |
+| LOOP: INX H  | 23             | 3012                 |
+| MOV A, M     | 7E             | 3013                 |
+| LDA 2060H    | 3A<br>60<br>20 | 3014<br>3015<br>3016 |
+| CMP M        | 97             | 3017                 |
+| JNC SKIP     | D2<br>12<br>30 | 3018<br>3019<br>3020 |
+| MOV A, M     | 7E             | 3021                 |
+| STA 2060H    | 32<br>60<br>20 | 3022<br>3023<br>3024 |
+| SKIP: DCR B  | 05             | 3025                 |
+| JNZ LOOP     | C2<br>25<br>30 | 3026<br>3027<br>3028 |
+| HLT          | 76             | 3029                 |
+![[Pasted image 20241124170413.png]]
+![[Pasted image 20241124170342.png]]
 
 # Find the Smallest Number in an Array
+| Mnemonics    | Hex-codes      | Address              |
+| ------------ | -------------- | -------------------- |
+| LXI H, 2050H | 21<br>50<br>20 | 3000<br>3001<br>3002 |
+| MOV A, M     | 7E             | 3003                 |
+| STA 2060H    | 32<br>60<br>20 | 3004<br>3005<br>3006 |
+| LDA 2040H    | 3A<br>40<br>20 | 3007<br>3008<br>3009 |
+| MOV B, A     | 47             | 3010                 |
+| DCR B        | 05             | 3011                 |
+| LOOP: INX H  | 23             | 3012                 |
+| MOV A, M     | 7E             | 3013                 |
+| LDA 2060H    | 3A<br>60<br>20 | 3014<br>3015<br>3016 |
+| CMP M        | 97             | 3017                 |
+| JC SKIP      | DA<br>25<br>30 | 3018<br>3019<br>3020 |
+| MOV A, M     | 7E             | 3021                 |
+| STA 2060H    | 32<br>60<br>20 | 3022<br>3023<br>3024 |
+| SKIP: DCR B  | 05             | 3025                 |
+| JNZ LOOP     | C2<br>12<br>30 | 3026<br>3027<br>3028 |
+| HLT          | 76             | 3029                 |
+![[Pasted image 20241124170326.png]]
 
-| Mnemonics   | Hex-codes      | Address              |
-| ----------- | -------------- | -------------------- |
-| LXI H       | 21<br>00<br>20 | 3000<br>3001<br>3002 |
-| MOV C, M    | 4E             | 3003                 |
-| INX H       | 23             | 3004                 |
-| MOV A, M    | 7E             | 3005                 |
-| DCR C       | 0D             | 3006                 |
-| Loop: INX H | 23             | 3007                 |
-| MOV B, M    | 46             | 3008                 |
-| CMP B       | B8             | 3009                 |
-| JC Next     | DA<br>11<br>20 | 300A<br>300B<br>300C |
-| MOV A, B    | 78             | 300D                 |
-| Next: DCR C | 0D             | 2011                 |
-| JNZ Loop    | C2<br>07<br>30 | 2012<br>2013<br>2014 |
-| STA 2050H   | 32<br>50<br>20 | 2100<br>2101<br>2102 |
-| HLT         | 76             | 2103                 |
+![[Pasted image 20241124170342.png]]
+
 # Program to Calculate the Sum of Numbers in an Array and Handle Carry
+| Mnemonics       | Hex-codes      | Address              |
+| --------------- | -------------- | -------------------- |
+| LXI H, 2050H    | 21<br>50<br>20 | 3000<br>3001<br>3002 |
+| MVI A, 00H      | 3E<br>00       | 3003<br>3004         |
+| MVI C, 00H      | 0E<br>00       | 3005<br>3006         |
+| STA 2060H       | 32<br>60<br>20 | 3007<br>3008<br>3009 |
+| STA 2061H       | 32<br>61<br>20 | 3010<br>3011<br>3012 |
+| LDA 2040H       | 3A<br>40<br>20 | 3013<br>3014<br>3015 |
+| MOV B, A        | 47             | 3016                 |
+| LOOP: LDA 2060H | 3A<br>60<br>20 | 3017<br>3018<br>3019 |
+| ADD M           | 86             | 3020                 |
+| JNC SKIP        | D2<br>25<br>30 | 3021<br>3022<br>3023 |
+| INR C           | 0C             | 3024                 |
+| SKIP: STA 2060H | 32<br>60<br>20 | 3025<br>3026<br>3027 |
+| MOV A, C        | 4F             | 3028                 |
+| STA 2061H       | 32<br>61<br>20 | 3029<br>3030<br>3031 |
+| INX H           | 23             | 3032                 |
+| DCR B           | 05             | 3033                 |
+| JNZ LOOP        | C2<br>17<br>30 | 3034<br>3035<br>3036 |
+| HLT             | 76             | 3037                 |
+![[Pasted image 20241124170230.png]]
 
-| Mnemonics      | Hex-codes      | Address              |
-| -------------- | -------------- | -------------------- |
-| LXI H          | 21<br>00<br>20 | 3000<br>3001<br>3002 |
-| MOV C, M       | 4E             | 3003                 |
-| INX H          | 23             | 3004                 |
-| MVI D, 00      | 16<br>00       | 3005<br>3006         |
-| MVI E, 00      | 1E<br>00       | 3007<br>3008         |
-| Loop: MOV A, M | 7E             | 3009                 |
-| ADD L          | 85             | 300A                 |
-| JNC Next       | D2<br>0E<br>30 | 300B<br>300C<br>300D |
-| INX D          | 13             | 300E                 |
-| Next: MOV E, A | 5F             | 300F                 |
-| INX H          | 23             | 3010                 |
-| DCR C          | 0D             | 3011                 |
-| JNZ Loop       | C2<br>09<br>30 | 3012<br>3013<br>3014 |
-| MOV A, D       | 7A             | 3015                 |
-| STA 2050H      | 32<br>50<br>20 | 3016<br>3017<br>3018 |
-| MOV A, E       | 7B             | 3019                 |
-| STA 2051H      | 32<br>51<br>20 | 301A<br>301B<br>301C |
-| HLT            | 76             | 301D                 |
-
+![[Pasted image 20241124170242.png]]
 # Program to Sort an Array in Ascending Order
-
-| Mnemonics     | Hex-codes      | Address              |
-| ------------- | -------------- | -------------------- |
-| LXI H         | 21<br>00<br>20 | 3000<br>3001<br>3002 |
-| MOV C, M      | 4E             | 3003                 |
-| DCR C         | 0D             | 3004                 |
-| MOV B, C      | 41             | 3005                 |
-| INX H         | 23             | 3006                 |
-| Loop1: MOV D, C | 4A           | 3007                 |
-| LXI H, 2001H  | 21<br>01<br>20 | 3008<br>3009<br>300A |
-| Loop2: MOV A, M | 7E           | 300B                 |
-| INX H         | 23             | 300C                 |
-| CMP M         | BE             | 300D                 |
-| JC Skip       | DA<br>13<br>30 | 300E<br>300F<br>3010 |
-| XCHG          | EB             | 3011                 |
-| MOV M, A      | 77             | 3012                 |
-| Skip: DCR D   | 15             | 3013                 |
-| JNZ Loop2     | C2<br>0B<br>30 | 3014<br>3015<br>3016 |
-| DCR C         | 0D             | 3017                 |
-| JNZ Loop1     | C2<br>07<br>30 | 3018<br>3019<br>301A |
-| HLT           | 76             | 301B                 |
-
-
+| Mnemonics           | Hex-codes      | Address              |
+| ------------------- | -------------- | -------------------- |
+| LDA 2040H           | 3A<br>40<br>20 | 3000<br>3001<br>3002 |
+| MOV C, A            | 4F             | 3003                 |
+| DCR C               | 0D             | 3004                 |
+| OUTER: LXI H, 2050H | 21<br>50<br>20 | 3005<br>3006<br>3007 |
+| MOV B, C            | 47             | 3008                 |
+| INNER: MOV A, M     | 7E             | 3009                 |
+| INX H               | 23             | 3010                 |
+| CMP M               | 94             | 3011                 |
+| JC SKIP             | DA<br>12<br>30 | 3012<br>3013<br>3014 |
+| MOV D, M            | 57             | 3015                 |
+| MOV M, A            | 7E             | 3016                 |
+| DCX H               | 0D             | 3017                 |
+| MOV M, D            | 56             | 3018                 |
+| INX H               | 23             | 3019                 |
+| SKIP: DCR B         | 05             | 3020                 |
+| JNZ INNER           | C2<br>09<br>30 | 3021<br>3022<br>3023 |
+| DCR C               | 0D             | 3024                 |
+| JNZ OUTER           | C2<br>05<br>30 | 3025<br>3026<br>3027 |
+| HLT                 | 76             | 3028                 |
+![[Pasted image 20241124170155.png]]
 
 # Program to Implement Bubble Sort in Descending Order
-
-| Mnemonics      | Hex-codes      | Address              |
-| -------------- | -------------- | -------------------- |
-| LXI H          | 21<br>00<br>20 | 3000<br>3001<br>3002 |
-| MOV C, M       | 4E             | 3003                 |
-| DCR C          | 0D             | 3004                 |
-| MOV B, C       | 41             | 3005                 |
-| INX H          | 23             | 3006                 |
-| OuterLoop: MOV D, C | 4A        | 3007                 |
-| LXI H, 2001H   | 21<br>01<br>20 | 3008<br>3009<br>300A |
-| InnerLoop: MOV A, M | 7E        | 300B                 |
-| INX H          | 23             | 300C                 |
-| CMP M          | BE             | 300D                 |
-| JNC Skip       | D2<br>13<br>30 | 300E<br>300F<br>3010 |
-| MOV E, M       | 5E             | 3011                 |
-| MOV M, A       | 77             | 3012                 |
-| DCX H          | 2B             | 3013                 |
-| MOV M, E       | 73             | 3014                 |
-| Skip: DCR D    | 15             | 3015                 |
-| JNZ InnerLoop  | C2<br>0B<br>30 | 3016<br>3017<br>3018 |
-| DCR C          | 0D             | 3019                 |
-| JNZ OuterLoop  | C2<br>07<br>30 | 301A<br>301B<br>301C |
-| HLT            | 76             | 301D                 |
-
+| Mnemonics           | Hex-codes      | Address              |
+| ------------------- | -------------- | -------------------- |
+| LDA 2040H           | 3A<br>40<br>20 | 0000<br>0001<br>0002 |
+| MOV C, A            | 79             | 0003                 |
+| DCR C               | 0D             | 0004                 |
+| OUTER: LXI H, 2050H | 21<br>50<br>20 | 0005<br>0006<br>0007 |
+| MOV B, C            | 41             | 0008                 |
+| INNER: MOV A, M     | 7E             | 0009                 |
+| INX H               | 23             | 000A                 |
+| CMP M               | CP             | 000B                 |
+| JNC SKIP            | D2<br>14<br>00 | 000C<br>000D<br>000E |
+| MOV D, M            | 5A             | 000F                 |
+| MOV M, A            | 77             | 0010                 |
+| DCX H               | 0A             | 0011                 |
+| MOV M, D            | 77             | 0012                 |
+| INX H               | 23             | 0013                 |
+| SKIP: DCR B         | 05             | 0014                 |
+| JNZ INNER           | C2<br>09<br>00 | 0015<br>0016<br>0017 |
+| DCR C               | 0D             | 0018                 |
+| JNZ OUTER           | C2<br>05<br>00 | 0019<br>0020<br>0021 |
+| HLT                 | 76             | 0022                 |
+![[Pasted image 20241124170131.png]]
 # Program to Find the Factorial of a Number
-
-| Mnemonics     | Hex-codes      | Address              |
-| ------------- | -------------- | -------------------- |
-| LXI H         | 21<br>00<br>20 | 3000<br>3001<br>3002 |
-| MOV B, M      | 46             | 3003                 |
-| MVI C, 01     | 0E<br>01       | 3004<br>3005         |
-| MOV A, B      | 78             | 3006                 |
-| DCR B         | 05             | 3007                 |
-| Loop: MOV D, B | 42            | 3008                 |
-| MOV E, C      | 4B             | 3009                 |
-| CALL Multiply | CD<br>10<br>30 | 300A<br>300B<br>300C |
-| MOV C, L      | 4D             | 300D                 |
-| MOV B, D      | 43             | 300E                 |
-| DCR B         | 05             | 300F                 |
-| JNZ Loop      | C2<br>08<br>30 | 3010<br>3011<br>3012 |
-| STA 2050H     | 32<br>50<br>20 | 3013<br>3014<br>3015 |
-| HLT           | 76             | 3016                 |
-
-## Subroutine for Multiplication
-
-| Mnemonics      | Hex-codes      | Address              |
-| -------------- | -------------- | -------------------- |
-| Multiply: MOV A, D | 7A         | 3010                 |
-| MVI H, 00      | 26<br>00       | 3011<br>3012         |
-| MOV L, E       | 6B             | 3013                 |
-| CALL Add       | CD<br>18<br>30 | 3014<br>3015<br>3016 |
-| DCR D          | 15             | 3017                 |
-| JNZ Multiply   | C2<br>10<br>30 | 3018<br>3019<br>301A |
-| RET            | C9             | 301B                 |
-
-## Subroutine for Addition
-
-| Mnemonics      | Hex-codes      | Address              |
-| -------------- | -------------- | -------------------- |
-| Add: MOV A, L  | 7E             | 301C                 |
-| ADD H          | 84             | 301D                 |
-| MOV L, A       | 6F             | 301E                 |
-| RET            | C9             | 301F                 |
+| Mnemonics  | Hex-codes      | Address              |
+| ---------- | -------------- | -------------------- |
+| LDA 2050H  | 3A<br>50<br>20 | 3000<br>3001<br>3002 |
+| MOV B, A   | 47             | 3003                 |
+| MVI A, 01H | 3E<br>01       | 3004<br>3005         |
+| STA 2060H  | 32<br>60<br>20 | 3006<br>3007<br>3008 |
+| MOV A, B   | 78             | 3009                 |
+| CPI 01H    | F9<br>01       | 300A<br>300B         |
+| JC DONE    | DA<br>0C<br>30 | 300C<br>300D<br>300E |
+| JZ DONE    | ZF<br>0C<br>30 | 300F<br>3010<br>3011 |
+| LDA 2060H  | 3A<br>60<br>20 | 3012<br>3013<br>3014 |
+| MOV C, A   | 4F             | 3015                 |
+| MVI D, 00H | 06<br>00       | 3016<br>3017         |
+| ADD C      | 80             | 3018                 |
+| INR D      | 14             | 3019                 |
+| MOV E, A   | 5F             | 3020                 |
+| MOV A, B   | 78             | 3021                 |
+| CMP D      | FE             | 3022                 |
+| MOV A, E   | 7F             | 3023                 |
+| JNZ LOOP   | C2<br>14<br>30 | 3024<br>3025<br>3026 |
+| STA 2060H  | 32<br>60<br>20 | 3027<br>3028<br>3029 |
+| DCR B      | 10             | 3030                 |
+| CPI 01H    | F9<br>01       | 3031<br>3032         |
+| JNZ MULT   | C2<br>06<br>30 | 3033<br>3034<br>3035 |
+| DONE: HLT  | 76             | 3036                 |
 
 # Program to Search for a Number in an Array
+| Mnemonics         | Hex-codes      | Address              |
+| ----------------- | -------------- | -------------------- |
+| LXI H, 2000H      | 21<br>00<br>20 | 3000<br>3001<br>3002 |
+| MOV C, M          | 7E             | 3003                 |
+| INX H             | 23             | 3004                 |
+| MOV A, M          | 7E             | 3005                 |
+| INX H             | 23             | 3006                 |
+| LOOP: CMP M       | 96             | 3007                 |
+| JZ FOUND          | FZ<br>22<br>30 | 3008<br>3009<br>3010 |
+| INX H             | 23             | 3011                 |
+| DCR C             | 0D             | 3012                 |
+| JNZ LOOP          | C2<br>07<br>30 | 3013<br>3014<br>3015 |
+| MVI A, 00H        | 3E<br>00       | 3016<br>3017         |
+| STA 2050H         | 32<br>50<br>20 | 3018<br>3019<br>3020 |
+| HLT               | 76             | 3021                 |
+| FOUND: MVI A, 01H | 3E<br>01       | 3022<br>3023         |
+| STA 2050H         | 32<br>50<br>20 | 3024<br>3025<br>3026 |
+| HLT               | 76             | 3027                 |
 
-| Mnemonics      | Hex-codes      | Address              |
-| -------------- | -------------- | -------------------- |
-| LXI H          | 21<br>00<br>20 | 3000<br>3001<br>3002 |
-| MOV C, M       | 4E             | 3003                 |
-| INX H          | 23             | 3004                 |
-| MOV A, M       | 7E             | 3005                 |
-| INX H          | 23             | 3006                 |
-| Loop: CMP M    | BE             | 3007                 |
-| JZ Found       | CA<br>0E<br>30 | 3008<br>3009<br>300A |
-| INX H          | 23             | 300B                 |
-| DCR C          | 0D             | 300C                 |
-| JNZ Loop       | C2<br>07<br>30 | 300D<br>300E<br>300F |
-| MVI A, 00      | 3E<br>00       | 3010<br>3011         |
-| STA 2050H      | 32<br>50<br>20 | 3012<br>3013<br>3014 |
-| HLT            | 76             | 3015                 |
-| Found: MVI A, 01 | 3E<br>01     | 3016<br>3017         |
-| STA 2050H      | 32<br>50<br>20 | 3018<br>3019<br>301A |
-| HLT            | 76             | 301B                 |
+![[Pasted image 20241124165933.png]]
 
-
+![[Pasted image 20241124165950.png]]
 # Program to Compare Two Hexadecimal Numbers
-
-| Mnemonics      | Hex-codes      | Address              |
-| -------------- | -------------- | -------------------- |
-| MVI A, XX      | 3E<br>XX       | 3000<br>3001         |
-| MOV B, A       | 47             | 3002                 |
-| MVI A, YY      | 3E<br>YY       | 3003<br>3004         |
-| CMP B          | B8             | 3005                 |
-| JZ Equal       | CA<br>0B<br>30 | 3006<br>3007<br>3008 |
-| JC Less        | DA<br>0E<br>30 | 3009<br>300A<br>300B |
-| JMP Greater    | C3<br>11<br>30 | 300C<br>300D<br>300E |
-| Equal: MVI A, 00 | 3E<br>00     | 300F<br>3010         |
-| JMP End        | C3<br>14<br>30 | 3011<br>3012<br>3013 |
-| Less: MVI A, -1 | 3E<br>FF      | 3014<br>3015         |
-| JMP End        | C3<br>14<br>30 | 3016<br>3017<br>3018 |
-| Greater: MVI A, 01 | 3E<br>01   | 3019<br>301A         |
-| End: STA 2050H | 32<br>50<br>20 | 301B<br>301C<br>301D |
-| HLT            | 76             | 301E                 |
-
+| Mnemonics           | Hex-codes      | Address              |
+| ------------------- | -------------- | -------------------- |
+| MVI A, 05H          | 3E<br>05       | 3000<br>3001         |
+| MOV B, A            | 47             | 3002                 |
+| MVI A, 01H          | 3E<br>01       | 3003<br>3004         |
+| CMP B               | B8             | 3005                 |
+| JZ Equal            | FZ<br>15<br>30 | 3006<br>3007<br>3008 |
+| JC Less             | F2<br>20<br>30 | 3009<br>3010<br>3011 |
+| JMP Greater         | C3<br>25<br>30 | 3012<br>3013<br>3014 |
+| Equal: MVI A, 00H   | 3E<br>00       | 3015<br>3016         |
+| JMP END             | C3<br>27<br>30 | 3017<br>3018<br>3019 |
+| Less: MVI A, 0FFH   | 3E<br>FF       | 3020<br>3021         |
+| JMP END             | C3<br>27<br>30 | 3022<br>3023<br>3024 |
+| Greater: MVI A, 01H | 3E<br>01       | 3025<br>3026         |
+| END: STA 2050H      | 32<br>50<br>20 | 3027<br>3028<br>3029 |
+| HLT                 | 76             | 3030                 |
+![[Pasted image 20241124165724.png]]
 # Program to Count the Number of 1's in the Contents of Register B
+| Mnemonics   | Hex-codes      | Address              |
+| ----------- | -------------- | -------------------- |
+| MVI B, 10H  | 3E<br>10       | 3000<br>3001         |
+| ADD B       | 80             | 3002                 |
+| MVI C, 00H  | 3E<br>00       | 3003<br>3004         |
+| Loop: RLC   | 07             | 3005                 |
+| JNC Skip    | D2<br>10<br>30 | 3006<br>3007<br>3008 |
+| INR C       | 04             | 3009                 |
+| Skip: DCR B | 0D             | 3010                 |
+| JNZ Loop    | C2<br>05<br>30 | 3011<br>3012<br>3013 |
+| MOV A, C    | 47             | 3014                 |
+| STA 2050H   | 32<br>50<br>20 | 3015<br>3016<br>3017 |
+| HLT         | 76             | 3018                 |
 
-| Mnemonics      | Hex-codes      | Address              |
-| -------------- | -------------- | -------------------- |
-| MVI C, 00      | 0E<br>00       | 3000<br>3001         |
-| Loop: RLC      | 07             | 3002                 |
-| JNC Skip       | D2<br>06<br>30 | 3003<br>3004<br>3005 |
-| INR C          | 0C             | 3006                 |
-| Skip: DCR B    | 05             | 3007                 |
-| JNZ Loop       | C2<br>02<br>30 | 3008<br>3009<br>300A |
-| MOV A, C       | 79             | 300B                 |
-| STA 2050H      | 32<br>50<br>20 | 300C<br>300D<br>300E |
-| HLT            | 76             | 300F                 |
-
+![[Pasted image 20241124170826.png]]
